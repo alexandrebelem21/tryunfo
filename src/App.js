@@ -86,6 +86,9 @@ class App extends React.Component {
 
     this.setState((prevState) => ({
       savedCards: [...prevState.savedCards, newCard],
+      hasTrunfo: [...prevState.savedCards, newCard].some(
+        (trunfo) => trunfo.cardTrunfo
+      ),
       cardName: "",
       cardDescription: "",
       cardAttr1: 0,
