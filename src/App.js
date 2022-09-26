@@ -117,34 +117,53 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        <Form
-          state={this.state}
-          cardName={cardName}
-          cardDescription={cardDescription}
-          cardAttr1={cardAttr1}
-          cardAttr2={cardAttr2}
-          cardAttr3={cardAttr3}
-          cardImage={cardImage}
-          cardRare={cardRare}
-          cardTrunfo={cardTrunfo}
-          hasTrunfo={hasTrunfo}
-          onInputChange={this.onInputChange}
-          isSaveButtonDisabled={isSaveButtonDisabled}
-          onSaveButtonClick={this.onSaveButtonClick}
-        />
-        <Card
-          cardName={cardName}
-          cardDescription={cardDescription}
-          cardAttr1={cardAttr1}
-          cardAttr2={cardAttr2}
-          cardAttr3={cardAttr3}
-          cardImage={cardImage}
-          cardRare={cardRare}
-          cardTrunfo={cardTrunfo}
-          hasTrunfo={hasTrunfo}
-        />
-      </div>
+      <>
+        <div>
+          <Form
+            state={this.state}
+            cardName={cardName}
+            cardDescription={cardDescription}
+            cardAttr1={cardAttr1}
+            cardAttr2={cardAttr2}
+            cardAttr3={cardAttr3}
+            cardImage={cardImage}
+            cardRare={cardRare}
+            cardTrunfo={cardTrunfo}
+            hasTrunfo={hasTrunfo}
+            onInputChange={this.onInputChange}
+            isSaveButtonDisabled={isSaveButtonDisabled}
+            onSaveButtonClick={this.onSaveButtonClick}
+          />
+          <Card
+            cardName={cardName}
+            cardDescription={cardDescription}
+            cardAttr1={cardAttr1}
+            cardAttr2={cardAttr2}
+            cardAttr3={cardAttr3}
+            cardImage={cardImage}
+            cardRare={cardRare}
+            cardTrunfo={cardTrunfo}
+            hasTrunfo={hasTrunfo}
+          />
+        </div>
+        <div>
+          {savedCards.map((e) => (
+            <div key={e.cardName}>
+              <Card
+                cardName={e.cardName}
+                cardDescription={e.cardDescription}
+                cardAttr1={e.cardAttr1}
+                cardAttr2={e.cardAttr2}
+                cardAttr3={e.cardAttr3}
+                cardImage={e.cardImage}
+                cardRare={e.cardRare}
+                cardTrunfo={e.cardTrunfo}
+                key={e.cardName}
+              />
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
 }
