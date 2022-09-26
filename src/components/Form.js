@@ -16,7 +16,6 @@ class Form extends React.Component {
       isSaveButtonDisabled,
       onSaveButtonClick,
     } = this.props;
-
     return (
       <div>
         <form>
