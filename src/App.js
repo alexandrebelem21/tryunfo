@@ -58,7 +58,6 @@ class App extends React.Component {
       this.setState({ isSaveButtonDisabled: true });
     }
   };
-  // console.log(this.isSaveButtonDisabled());
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
@@ -100,6 +99,14 @@ class App extends React.Component {
     }));
   };
 
+  remove = (event) => {
+    const { savedCards, hasTrunfo, cardTrunfo } = this.state;
+    const cardClick = event.target.name;
+    this.setState({
+      hasTrunfo: savedCards.cardTrunfo ? hasTrunfo : false,
+      savedCards: savedCards.filter((card) => card.cardName !== cardClick),
+    });
+  };
   render() {
     const {
       cardName,
@@ -160,6 +167,14 @@ class App extends React.Component {
                 cardTrunfo={e.cardTrunfo}
                 key={e.cardName}
               />
+              <button
+                type="button"
+                name={e.cardName}
+                data-testid="delete-button"
+                onClick={this.remove}
+              >
+                Excluir
+              </button>
             </div>
           ))}
         </div>
