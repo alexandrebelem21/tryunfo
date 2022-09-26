@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
@@ -23,23 +23,27 @@ class Card extends React.Component {
         <img
           className="imageCard"
           data-testid="image-card"
-          src={cardImage}
-          alt={cardName}
+          src={ cardImage }
+          alt={ cardName }
         />
         <div className="descriptionCard" data-testid="description-card">
           {cardDescription}
         </div>
         <div className="atributos">
           <div className="attr01" data-testid="attr1-card">
-            Attr01 <br /> {cardAttr1}
+            Attr01
+            <br />
+            { cardAttr1 }
           </div>
           <div className="attr01" data-testid="attr2-card">
-            Attr02 <br /> {cardAttr2}
+            Attr02
+            <br />
+            { cardAttr2 }
           </div>
           <div className="attr01" data-testid="attr3-card">
             Attr03
             <br />
-            {cardAttr3}
+            { cardAttr3 }
           </div>
         </div>
         <div data-testid="rare-card">{cardRare}</div>
