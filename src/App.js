@@ -20,6 +20,7 @@ class App extends React.Component {
       searchValue: '',
       rare: 'todas',
       tt: false,
+      dis: false,
     };
   }
 
@@ -27,6 +28,17 @@ class App extends React.Component {
     const { name, value, type, checked } = event.target;
     const teste = type === 'checkbox' ? checked : value;
     this.setState({ [name]: teste }, this.botao);
+  };
+
+  checkTrunfo = (event) => {
+    const { name, value, type, checked } = event.target;
+    this.setState({ [name]: type === 'checkbox'
+      ? checked : value }, this.validCheckTrunfo);
+  };
+
+  validCheckTrunfo = () => {
+    const { tt } = this.state;
+    return tt ? this.setState({ dis: true }) : this.setState({ dis: false });
   };
 
   botao = () => {
@@ -48,16 +60,9 @@ class App extends React.Component {
 
     if (
       cardName
-      && cardDescription
-      && cardImage
-      && cardRare !== undefined
-      && sum
-      && attr01 >= 0
-      && attr01 <= soma
-      && attr02 >= 0
-      && attr02 <= soma
-      && attr03 >= 0
-      && attr03 <= soma
+      && cardDescription && cardImage && cardRare !== undefined
+      && sum && attr01 >= 0 && attr01 <= soma && attr02 >= 0
+      && attr02 <= soma && attr03 >= 0 && attr03 <= soma
     ) {
       this.setState({ isSaveButtonDisabled: false });
     } else {
@@ -141,6 +146,7 @@ class App extends React.Component {
       searchValue,
       rare,
       tt,
+      dis,
     } = this.state;
 
     return (
@@ -175,6 +181,7 @@ class App extends React.Component {
         </div>
         <div>
           <input
+            disabled={ dis }
             type="text"
             data-testid="name-filter"
             id="search"
@@ -182,11 +189,11 @@ class App extends React.Component {
             onChange={ this.search }
           />
           <select
+            disabled={ dis }
             type="select"
             data-testid="rare-filter"
             id="rare-filter"
             name="rare"
-            value="todas"
             onChange={ this.search2 }
           >
             <option value="todas">todas</option>
@@ -199,19 +206,13 @@ class App extends React.Component {
             type="checkbox"
             name="tt"
             data-testid="trunfo-filter"
-            // checked={ tt }
-            onChange={ this.onInputChange }
+            onChange={ this.checkTrunfo }
           />
         </div>
         <div>
           {savedCards.filter((carta) => carta.cardName.includes(searchValue))
             .filter((carta) => (rare === 'todas' ? carta : carta.cardRare === rare))
-            .filter((aaa) => {
-              if (tt) {
-                return aaa.cardTrunfo === true;
-              }
-              return aaa;
-            })
+            .filter((trunfo) => (tt === true ? trunfo.cardTrunfo === tt : trunfo))
             .map((e) => (
               <div key={ e.cardName }>
                 <Card
